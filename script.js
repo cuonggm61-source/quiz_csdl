@@ -1,4 +1,4 @@
-﻿// ===========================
+// ===========================
 // DATA – 356 questions
 // ===========================
 const RAW_QUESTIONS = [
@@ -383,9 +383,21 @@ function selectMode(el){
   }
 }
 
-function startQuiz(){
-  const numQ = parseInt(document.getElementById('num-questions').value)||30;
-  const startFrom = parseInt(document.getElementById('start-from').value)||1;
+function startQuiz(fromUrl = false){
+  let numQ, startFrom;
+  if (fromUrl !== true) {
+    numQ = parseInt(document.getElementById('num-questions').value)||30;
+    startFrom = parseInt(document.getElementById('start-from').value)||1;
+    let url = window.location.href.split('?')[0];
+    url += '?quiz=1&mode=' + mode + '&num=' + numQ + '&start=' + startFrom;
+    window.open(url, '_blank');
+    return;
+  }
+  
+  const params = new URLSearchParams(window.location.search);
+  mode = params.get('mode') || 'practice';
+  numQ = parseInt(params.get('num')) || 30;
+  startFrom = parseInt(params.get('start')) || 1;
   
   if(mode==='review'){
     questions = RAW_QUESTIONS.map((q,i)=>({...q,origIdx:i}));
@@ -743,5 +755,18 @@ function showScreen(id){
 
 function goHome(){
   clearInterval(timerInterval); clearInterval(questionTimer);
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('quiz') === '1') {
+    window.close(); // Try closing the tab if opened via window.open
+  }
   showScreen('home-screen');
+  // Optional: remove query params
+  window.history.replaceState({}, '', window.location.href.split('?')[0]);
 }
+
+window.onload = function() {
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('quiz') === '1') {
+    startQuiz(true);
+  }
+};
