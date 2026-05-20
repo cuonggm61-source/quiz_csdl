@@ -407,7 +407,6 @@ function showScreen(id){
 }
 
 function goHome(){
-  window.close();
   window.location.href = 'index.html';
 }
 
