@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trß║»c Nghiß╗çm C╞í Sß╗ƒ Dß╗» Liß╗çu | CSDL Quiz</title>
-<meta name="description" content="├ön tß║¡p trß║»c nghiß╗çm C╞í sß╗ƒ dß╗» liß╗çu - 356 c├óu hß╗Åi tß╗òng hß╗úp">
+<title>Trắc Nghiệm Cơ Sở Dữ Liệu | CSDL Quiz</title>
+<meta name="description" content="Ôn tập trắc nghiệm Cơ sở dữ liệu - 356 câu hỏi tổng hợp">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -12,100 +12,100 @@
 
 <!-- ========== HOME ========== -->
 <div id="home-screen" class="screen active">
-  <div class="logo-icon">≡ƒùä∩╕Å</div>
-  <h1 class="home-title">Trß║»c Nghiß╗çm CSDL</h1>
-  <p class="home-sub">C╞í Sß╗ƒ Dß╗» Liß╗çu ΓÇô Nguyß╗àn Hß╗ông Ph╞░╞íng</p>
+  <div class="logo-icon">🗄️</div>
+  <h1 class="home-title">Trắc Nghiệm CSDL</h1>
+  <p class="home-sub">Cơ Sở Dữ Liệu – Nguyễn Hồng Phương</p>
   <p class="home-author">cuuduongthancong.com</p>
 
   <div class="stats-row">
     <div class="stat-card">
       <div class="stat-num">356</div>
-      <div class="stat-lbl">C├óu hß╗Åi</div>
+      <div class="stat-lbl">Câu hỏi</div>
     </div>
     <div class="stat-card">
       <div class="stat-num">8</div>
-      <div class="stat-lbl">Chß╗º ─æß╗ü</div>
+      <div class="stat-lbl">Chủ đề</div>
     </div>
     <div class="stat-card">
       <div class="stat-num">4</div>
-      <div class="stat-lbl">Chß║┐ ─æß╗Ö</div>
+      <div class="stat-lbl">Chế độ</div>
     </div>
   </div>
 
   <div class="mode-grid">
     <div class="mode-card selected" data-mode="practice" onclick="selectMode(this)">
-      <div class="mode-icon">≡ƒôÜ</div>
-      <div class="mode-name">Luyß╗çn tß║¡p</div>
-      <div class="mode-desc">Xem ─æ├íp ├ín sau mß╗ùi c├óu</div>
+      <div class="mode-icon">📚</div>
+      <div class="mode-name">Luyện tập</div>
+      <div class="mode-desc">Xem đáp án sau mỗi câu</div>
     </div>
     <div class="mode-card" data-mode="exam" onclick="selectMode(this)">
-      <div class="mode-icon">≡ƒô¥</div>
-      <div class="mode-name">Thi thß╗¡</div>
-      <div class="mode-desc">Nß╗Öp b├ái xem kß║┐t quß║ú</div>
+      <div class="mode-icon">📝</div>
+      <div class="mode-name">Thi thử</div>
+      <div class="mode-desc">Nộp bài xem kết quả</div>
     </div>
     <div class="mode-card" data-mode="timed" onclick="selectMode(this)">
-      <div class="mode-icon">ΓÅ▒∩╕Å</div>
-      <div class="mode-name">Giß╗¢i hß║ín thß╗¥i gian</div>
-      <div class="mode-desc">60 gi├óy mß╗ùi c├óu</div>
+      <div class="mode-icon">⏱️</div>
+      <div class="mode-name">Giới hạn thời gian</div>
+      <div class="mode-desc">60 giây mỗi câu</div>
     </div>
     <div class="mode-card" data-mode="review" onclick="selectMode(this)">
-      <div class="mode-icon">≡ƒöü</div>
-      <div class="mode-name">Xem lß║íi tß║Ñt cß║ú</div>
-      <div class="mode-desc">Duyß╗çt c├óu hß╗Åi v├á ─æ├íp ├ín</div>
+      <div class="mode-icon">🔁</div>
+      <div class="mode-name">Xem lại tất cả</div>
+      <div class="mode-desc">Duyệt câu hỏi và đáp án</div>
     </div>
   </div>
 
   <div class="settings-row">
-    <label>Sß╗æ c├óu:</label>
+    <label>Số câu:</label>
     <input type="number" id="num-questions" value="30" min="5" max="356" step="5">
-    <label style="margin-left:1rem;">Tß╗½ c├óu:</label>
+    <label style="margin-left:1rem;">Từ câu:</label>
     <input type="number" id="start-from" value="1" min="1" max="356">
   </div>
 
-  <button class="btn-start" onclick="startQuiz()">Bß║»t ─æß║ºu ΓåÆ</button>
+  <button class="btn-start" onclick="startQuiz()">Bắt đầu →</button>
 </div>
 
 <!-- ========== QUIZ ========== -->
 <div id="quiz-screen" class="screen">
   <header class="quiz-header">
-    <button class="btn-back" onclick="goHome()">ΓåÉ Tho├ít</button>
+    <button class="btn-back" onclick="goHome()">← Thoát</button>
     <div class="quiz-progress-wrap">
       <div class="quiz-meta">
-        <span id="q-counter">C├óu 1/30</span>
-        <span id="q-score-live">Γ£ô 0 &nbsp;Γ£ù 0</span>
+        <span id="q-counter">Câu 1/30</span>
+        <span id="q-score-live">✓ 0 &nbsp;✗ 0</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
     </div>
     <div class="timer-badge" id="timer-badge" style="display:none">1:00</div>
-    <button class="btn-panel" onclick="togglePanel()">Γÿ░ Bß║úng</button>
+    <button class="btn-panel" onclick="togglePanel()">☰ Bảng</button>
   </header>
 
   <div class="quiz-body">
     <div class="nav-panel" id="nav-panel">
-      <div class="nav-title">─Éiß╗üu h╞░ß╗¢ng</div>
+      <div class="nav-title">Điều hướng</div>
       <div class="nav-grid" id="nav-grid"></div>
       <div class="nav-legend">
-        <div class="legend-item"><div class="legend-dot" style="background:var(--primary)"></div>─Éang l├ám</div>
-        <div class="legend-item"><div class="legend-dot" style="background:rgba(108,99,255,0.3)"></div>─É├ú trß║ú lß╗¥i</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--border)"></div>Ch╞░a l├ám</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--primary)"></div>Đang làm</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(108,99,255,0.3)"></div>Đã trả lời</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--border)"></div>Chưa làm</div>
       </div>
     </div>
 
     <div class="quiz-main">
       <div class="question-card" id="question-card">
-        <div class="question-tag" id="q-tag">≡ƒôî C├óu 1</div>
+        <div class="question-tag" id="q-tag">📌 Câu 1</div>
         <div class="question-text" id="question-text"></div>
         <div class="options-list" id="options-list"></div>
         <div class="explanation-box" id="explanation-box"></div>
       </div>
 
       <div class="quiz-actions">
-        <button class="btn-nav" id="btn-prev" onclick="prevQ()">ΓåÉ C├óu tr╞░ß╗¢c</button>
+        <button class="btn-nav" id="btn-prev" onclick="prevQ()">← Câu trước</button>
         <div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
-          <button class="btn-submit" id="btn-submit" onclick="submitAnswer()">Kiß╗âm tra</button>
-          <button class="btn-end-quiz" onclick="endQuiz()">Nß╗Öp b├ái ≡ƒÅü</button>
+          <button class="btn-submit" id="btn-submit" onclick="submitAnswer()">Kiểm tra</button>
+          <button class="btn-end-quiz" onclick="endQuiz()">Nộp bài 🏁</button>
         </div>
-        <button class="btn-nav" id="btn-next" onclick="nextQ()">C├óu tiß║┐p ΓåÆ</button>
+        <button class="btn-nav" id="btn-next" onclick="nextQ()">Câu tiếp →</button>
       </div>
     </div>
   </div>
@@ -114,37 +114,37 @@
 <!-- ========== RESULT ========== -->
 <div id="result-screen" class="screen">
   <div class="result-header">
-    <div class="result-emoji" id="result-emoji">≡ƒÄë</div>
-    <div class="result-title" id="result-title">Ho├án th├ánh!</div>
+    <div class="result-emoji" id="result-emoji">🎉</div>
+    <div class="result-title" id="result-title">Hoàn thành!</div>
     <div style="color:var(--text-muted);font-size:0.9rem" id="result-sub"></div>
   </div>
 
   <div class="score-circle" id="score-circle" style="--pct:0deg">
     <div class="score-inner">
       <div class="score-pct" id="score-pct">0%</div>
-      <div class="score-lbl">─Éiß╗âm sß╗æ</div>
+      <div class="score-lbl">Điểm số</div>
     </div>
   </div>
 
   <div class="result-stats">
-    <div class="rstat c"><div class="rstat-num" id="rs-correct">0</div><div class="rstat-lbl">Γ£ô ─É├║ng</div></div>
-    <div class="rstat w"><div class="rstat-num" id="rs-wrong">0</div><div class="rstat-lbl">Γ£ù Sai</div></div>
-    <div class="rstat s"><div class="rstat-num" id="rs-skip">0</div><div class="rstat-lbl">ΓÇö Bß╗Å qua</div></div>
-    <div class="rstat t"><div class="rstat-num" id="rs-time">0:00</div><div class="rstat-lbl">ΓÅ▒ Thß╗¥i gian</div></div>
+    <div class="rstat c"><div class="rstat-num" id="rs-correct">0</div><div class="rstat-lbl">✓ Đúng</div></div>
+    <div class="rstat w"><div class="rstat-num" id="rs-wrong">0</div><div class="rstat-lbl">✗ Sai</div></div>
+    <div class="rstat s"><div class="rstat-num" id="rs-skip">0</div><div class="rstat-lbl">— Bỏ qua</div></div>
+    <div class="rstat t"><div class="rstat-num" id="rs-time">0:00</div><div class="rstat-lbl">⏱ Thời gian</div></div>
   </div>
 
   <div class="result-btns">
-    <button class="btn-retry" onclick="retryQuiz()">≡ƒöü L├ám lß║íi</button>
-    <button class="btn-home-r" onclick="goHome()">≡ƒÅá Trang chß╗º</button>
+    <button class="btn-retry" onclick="retryQuiz()">🔁 Làm lại</button>
+    <button class="btn-home-r" onclick="goHome()">🏠 Trang chủ</button>
   </div>
 
   <div class="review-section">
-    <div class="review-title">≡ƒôï Xem lß║íi c├óu trß║ú lß╗¥i</div>
+    <div class="review-title">📋 Xem lại câu trả lời</div>
     <div class="review-filter">
-      <button class="filter-btn active" onclick="filterReview('all',this)">Tß║Ñt cß║ú</button>
-      <button class="filter-btn" onclick="filterReview('wrong',this)">Sai Γ£ù</button>
-      <button class="filter-btn" onclick="filterReview('correct',this)">─É├║ng Γ£ô</button>
-      <button class="filter-btn" onclick="filterReview('skip',this)">Bß╗Å qua</button>
+      <button class="filter-btn active" onclick="filterReview('all',this)">Tất cả</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">Sai ✗</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">Đúng ✓</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">Bỏ qua</button>
     </div>
     <div id="review-list"></div>
   </div>
