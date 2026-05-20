@@ -269,7 +269,7 @@
             const startFrom = parseInt(document.getElementById('start-from').value)||1;
             const subject = document.getElementById('selected-subject').value;
             let url = 'quiz.html?mode=' + mode + '&num=' + numQ + '&start=' + startFrom + '&subject=' + subject;
-            window.open(url, '_blank');
+            window.location.href = url;
             closeModal();
         }
     </script>
