@@ -68,10 +68,11 @@ function updateNavBtn(i){
   const b=document.getElementById(`nav-${i}`);
   if(!b) return;
   b.className='nav-btn';
-  if(i===currentIdx) b.classList.add('current');
-  else if(results[i]==='correct') b.classList.add('correct');
+  if(results[i]==='correct') b.classList.add('correct');
   else if(results[i]==='wrong') b.classList.add('wrong');
   else if(answers[i]!==undefined) b.classList.add('answered');
+  
+  if(i===currentIdx) b.classList.add('current');
 }
 
 function togglePanel(){
@@ -188,8 +189,7 @@ function renderQuestion(){
   document.getElementById('btn-next').disabled=currentIdx===total-1;
   
   // Nav
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('current'));
-  updateNavBtn(currentIdx);
+  questions.forEach((_, i) => updateNavBtn(i));
   
   // Timer
   if(mode==='timed' && results[currentIdx]===undefined) startTimerBadge();

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ | Kho Đề Thi Trắc Nghiệm</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css?v=1779288188">
+    <link rel="stylesheet" href="css/index.css?v=1779288887">
     <style>
         /* CSS Modal Tùy Chỉnh */
         .modal {
@@ -52,29 +52,6 @@
             <p>Chọn chủ đề bạn muốn thử sức hôm nay</p>
         </div>
 
-        <!-- BẢNG THEO DÕI HOẠT ĐỘNG -->
-        <div class="heatmap-section">
-            <h3 class="heatmap-title">🔥 Hoạt Động Ôn Tập Gần Đây</h3>
-            <div class="heatmap-stats">
-                <span>Số ngày luyện tập: <strong id="total-days">0</strong></span>
-                <span>Chuỗi dài nhất: <strong id="max-streak">0</strong> ngày</span>
-                <span>Chuỗi hiện tại: <strong id="current-streak">0</strong> ngày</span>
-            </div>
-            <div class="heatmap-container">
-                <div class="heatmap-months" id="heatmap-months"></div>
-                <div class="heatmap-grid" id="heatmap-grid"></div>
-            </div>
-            <div class="heatmap-legend">
-                <span>Ít</span>
-                <div class="legend-box color-empty"></div>
-                <div class="legend-box color-scale-1"></div>
-                <div class="legend-box color-scale-2"></div>
-                <div class="legend-box color-scale-3"></div>
-                <div class="legend-box color-scale-4"></div>
-                <span>Nhiều</span>
-            </div>
-        </div>
-
         <div class="category-section active">
             <div class="category-header" onclick="toggleCategory(this)" style="border-left-color: #3498db;">
                 <h2>💻 MÔN CƠ SỞ DỮ LIỆU (CSDL)</h2>
@@ -94,24 +71,6 @@
             </div>
         </div>
         
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory(this)" style="border-left-color: #f39c12;">
-                <h2>🎲 CHUYÊN ĐỀ TOÁN (MẪU)</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="category-content">
-                <div class="exam-grid">
-                    <div class="exam-card" style="border-top-color: #f39c12;">
-                        <div>
-                            <div class="exam-title">Đề 01: XS Toàn Phần dễ</div>
-                            <div class="exam-desc">Bộ 15 câu hỏi trắc nghiệm rèn luyện tư duy tính xác suất có điều kiện.</div>
-                            <div class="exam-meta">⏱️ 25 phút | 📝 15 câu</div>
-                        </div>
-                        <button onclick="openConfigModal('xac-suat')" class="start-btn" style="background-color: #f39c12; border:none; cursor:pointer; color: white; padding: 10px 15px; border-radius: 5px; font-weight:bold; margin-top:10px;">Vào Thi Ngay ➔</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- MODAL TÙY CHỈNH -->
@@ -158,78 +117,6 @@
     </div>
 
     <script>
-        function renderHeatmap() {
-            const grid = document.getElementById('heatmap-grid');
-            const monthsContainer = document.getElementById('heatmap-months');
-            if (!grid) return;
-            grid.innerHTML = '';
-            if (monthsContainer) monthsContainer.innerHTML = '';
-            const activityData = JSON.parse(localStorage.getItem('quiz_activity') || '{}');
-            const today = new Date();
-            const daysCount = 365;
-            let startDate = new Date(today);
-            startDate.setDate(today.getDate() - daysCount + 1);
-            const startDayOfWeek = startDate.getDay();
-            for (let i = 0; i < startDayOfWeek; i++) {
-                const square = document.createElement('div');
-                square.className = 'heatmap-cell';
-                square.style.visibility = 'hidden';
-                grid.appendChild(square);
-            }
-            let totalDays = 0, currentStreak = 0, maxStreak = 0, currentStreakCounter = 0, lastActiveDate = null, colIndex = 0, currentDayOfWeek = startDayOfWeek, lastMonth = -1;
-            const monthNames = ["Thg 1", "Thg 2", "Thg 3", "Thg 4", "Thg 5", "Thg 6", "Thg 7", "Thg 8", "Thg 9", "Thg 10", "Thg 11", "Thg 12"];
-            for (let i = daysCount - 1; i >= 0; i--) {
-                let d = new Date();
-                d.setDate(today.getDate() - i);
-                if (d.getMonth() !== lastMonth) {
-                    if (monthsContainer) {
-                        let label = document.createElement('div');
-                        label.className = 'heatmap-month-label';
-                        label.textContent = monthNames[d.getMonth()];
-                        label.style.left = `${colIndex * 17}px`;
-                        monthsContainer.appendChild(label);
-                    }
-                    lastMonth = d.getMonth();
-                }
-                const tzoffset = d.getTimezoneOffset() * 60000;
-                const dateString = (new Date(d.getTime() - tzoffset)).toISOString().split('T')[0];
-                const count = activityData[dateString] || 0;
-                if (count > 0) {
-                    totalDays++;
-                    if (!lastActiveDate) { currentStreakCounter = 1; }
-                    else {
-                        let diff = Math.round((d - lastActiveDate) / (1000 * 60 * 60 * 24));
-                        if (diff === 1) { currentStreakCounter++; }
-                        else if (diff > 1) { currentStreakCounter = 1; }
-                    }
-                    if (currentStreakCounter > maxStreak) maxStreak = currentStreakCounter;
-                    lastActiveDate = new Date(d);
-                }
-                const square = document.createElement('div');
-                square.className = 'heatmap-cell';
-                if (count === 0) square.classList.add('color-empty');
-                else if (count === 1) square.classList.add('color-scale-1');
-                else if (count <= 3) square.classList.add('color-scale-2');
-                else if (count <= 5) square.classList.add('color-scale-3');
-                else square.classList.add('color-scale-4');
-                square.setAttribute('title', count === 0 ? `Chưa làm bài nào vào ${dateString}` : `${count} bài tập vào ${dateString}`);
-                grid.appendChild(square);
-                currentDayOfWeek++;
-                if (currentDayOfWeek === 7) { currentDayOfWeek = 0; colIndex++; }
-            }
-            if (lastActiveDate) {
-                let diffToToday = Math.round((today - lastActiveDate) / (1000 * 60 * 60 * 24));
-                if (diffToToday <= 1) { currentStreak = currentStreakCounter; }
-            }
-            document.getElementById('total-days').textContent = totalDays;
-            document.getElementById('current-streak').textContent = currentStreak;
-            document.getElementById('max-streak').textContent = maxStreak;
-            const container = document.querySelector('.heatmap-container');
-            if (container) { container.scrollLeft = container.scrollWidth; }
-        }
-
-        document.addEventListener("DOMContentLoaded", renderHeatmap);
-
         function toggleCategory(element) {
             const section = element.parentElement;
             section.classList.toggle('active');
