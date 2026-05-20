@@ -1,9 +1,9 @@
-﻿let currentIdx = 0;
+let currentIdx = 0;
 let answers = {};   // idx -> chosen opt index
 let results = {};   // idx -> 'correct'|'wrong'
 let mode = 'practice';
 let startTime, elapsedTime=0;
-let timerInterval, questionTimer;
+let timerInterval, questionTimer, globalTimerInterval;
 let retryData = null;
 let panelOpen = false;
 
@@ -35,6 +35,10 @@ function startQuiz(){
   renderQuestion();
   
   if(mode==='timed') startTimerBadge();
+  if(mode==='exam') {
+    let totalSec = questions.length * 48; // 25 câu = 20 phút (1200 giây)
+    startGlobalTimer(totalSec);
+  }
   if(mode==='review') enterReviewMode();
 }
 
@@ -97,6 +101,31 @@ function startTimerBadge(){
       if(answers[currentIdx]===undefined) answers[currentIdx]=-1;
       if(currentIdx<questions.length-1) nextQ();
       else endQuiz();
+    }
+  },1000);
+}
+
+function startGlobalTimer(totalSec){
+  const badge=document.getElementById('timer-badge');
+  badge.style.display='block';
+  let sec=totalSec;
+  
+  const updateBadge = () => {
+    const m=Math.floor(sec/60), s=sec%60;
+    badge.textContent=`${m}:${s<10?'0':''}${s}`;
+    if(sec<=60) badge.classList.add('danger');
+    else badge.classList.remove('danger');
+  };
+  
+  updateBadge();
+  clearInterval(globalTimerInterval);
+  globalTimerInterval=setInterval(()=>{
+    sec--;
+    updateBadge();
+    if(sec<=0){
+      clearInterval(globalTimerInterval);
+      alert('Đã hết thời gian làm bài!');
+      endQuiz();
     }
   },1000);
 }
@@ -262,6 +291,7 @@ function nextQ(){
 function endQuiz(){
   clearInterval(timerInterval);
   clearInterval(questionTimer);
+  clearInterval(globalTimerInterval);
   elapsedTime=Math.floor((Date.now()-startTime)/1000);
   
   // Compute results for exam mode
@@ -362,6 +392,10 @@ function retryQuiz(){
   buildNavGrid();
   renderQuestion();
   if(mode==='timed') startTimerBadge();
+  if(mode==='exam') {
+    let totalSec = questions.length * 48;
+    startGlobalTimer(totalSec);
+  }
 }
 
 // ===========================
