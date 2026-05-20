@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Làm Bài | Trắc Nghiệm CSDL</title>
+<meta name="description" content="Ôn tập trắc nghiệm Cơ sở dữ liệu - 356 câu hỏi tổng hợp">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ========== QUIZ ========== -->
+
+<div id="quiz-screen" class="screen">
+  <header class="quiz-header">
+    <button class="btn-back" onclick="goHome()">← Thoát</button>
+    <div class="quiz-progress-wrap">
+      <div class="quiz-meta">
+        <span id="q-counter">Câu 1/30</span>
+        <span id="q-score-live">✓ 0 &nbsp;✗ 0</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div class="timer-badge" id="timer-badge" style="display:none">1:00</div>
+    <button class="btn-panel" onclick="togglePanel()">☰ Bảng</button>
+  </header>
+
+  <div class="quiz-body">
+    <div class="nav-panel" id="nav-panel">
+      <div class="nav-title">Điều hướng</div>
+      <div class="nav-grid" id="nav-grid"></div>
+      <div class="nav-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--primary)"></div>Đang làm</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(108,99,255,0.3)"></div>Đã trả lời</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--border)"></div>Chưa làm</div>
+      </div>
+    </div>
+
+    <div class="quiz-main">
+      <div class="question-card" id="question-card">
+        <div class="question-tag" id="q-tag">📌 Câu 1</div>
+        <div class="question-text" id="question-text"></div>
+        <div class="options-list" id="options-list"></div>
+        <div class="explanation-box" id="explanation-box"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn-nav" id="btn-prev" onclick="prevQ()">← Câu trước</button>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
+          <button class="btn-submit" id="btn-submit" onclick="submitAnswer()">Kiểm tra</button>
+          <button class="btn-end-quiz" onclick="endQuiz()">Nộp bài 🏁</button>
+        </div>
+        <button class="btn-nav" id="btn-next" onclick="nextQ()">Câu tiếp →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== RESULT ========== -->
+<div id="result-screen" class="screen">
+  <div class="result-header">
+    <div class="result-emoji" id="result-emoji">🎉</div>
+    <div class="result-title" id="result-title">Hoàn thành!</div>
+    <div style="color:var(--text-muted);font-size:0.9rem" id="result-sub"></div>
+  </div>
+
+  <div class="score-circle" id="score-circle" style="--pct:0deg">
+    <div class="score-inner">
+      <div class="score-pct" id="score-pct">0%</div>
+      <div class="score-lbl">Điểm số</div>
+    </div>
+  </div>
+
+  <div class="result-stats">
+    <div class="rstat c"><div class="rstat-num" id="rs-correct">0</div><div class="rstat-lbl">✓ Đúng</div></div>
+    <div class="rstat w"><div class="rstat-num" id="rs-wrong">0</div><div class="rstat-lbl">✗ Sai</div></div>
+    <div class="rstat s"><div class="rstat-num" id="rs-skip">0</div><div class="rstat-lbl">— Bỏ qua</div></div>
+    <div class="rstat t"><div class="rstat-num" id="rs-time">0:00</div><div class="rstat-lbl">⏱ Thời gian</div></div>
+  </div>
+
+  <div class="result-btns">
+    <button class="btn-retry" onclick="retryQuiz()">🔁 Làm lại</button>
+    <button class="btn-home-r" onclick="goHome()">🏠 Trang chủ</button>
+  </div>
+
+  <div class="review-section">
+    <div class="review-title">📋 Xem lại câu trả lời</div>
+    <div class="review-filter">
+      <button class="filter-btn active" onclick="filterReview('all',this)">Tất cả</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">Sai ✗</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">Đúng ✓</button>
+      <button class="filter-btn" onclick="filterReview('skip',this)">Bỏ qua</button>
+    </div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+
+<script src="js/csdl_data.js" charset="UTF-8"></script>
+<script src="js/script.js" charset="UTF-8"></script>
+</body>
+</html>
