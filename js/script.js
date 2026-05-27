@@ -26,6 +26,8 @@ function startQuiz(){
     rawData = BAITAPPHUTOITHIEU_QUESTIONS;
   } else if(typeof GIUAKY_QUESTIONS !== 'undefined' && subject === 'giuaky') {
     rawData = GIUAKY_QUESTIONS;
+  } else if(typeof MOHINH_QUESTIONS !== 'undefined' && subject === 'mohinh') {
+    rawData = MOHINH_QUESTIONS;
   }
   
   if(mode==='review'){
