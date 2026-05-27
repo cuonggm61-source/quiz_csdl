@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ | Kho Đề Thi Trắc Nghiệm</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css?v=1779288888">
+    <link rel="stylesheet" href="css/index.css?v=1779845647">
     <style>
         /* CSS Modal Tùy Chỉnh */
         .modal {
@@ -66,6 +66,25 @@
                             <div class="exam-meta">⏱️ Tùy chỉnh | 📝 356 câu</div>
                         </div>
                         <button onclick="openConfigModal('csdl')" class="start-btn" style="background-color: #3498db; border: none; cursor: pointer; color: white; padding: 10px 15px; border-radius: 5px; font-weight:bold; margin-top:10px;">Vào Thi Ngay ➔</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory(this)" style="border-left-color: #27ae60;">
+                <h2>📝 CHUYÊN ĐỀ ÔN TẬP MẪU</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content" style="display: none;">
+                <div class="exam-grid">
+                    <div class="exam-card" style="border-top-color: #27ae60;">
+                        <div>
+                            <div class="exam-title">Đề Ôn Tập Mẫu (63 câu)</div>
+                            <div class="exam-desc">Bộ câu hỏi được trích xuất từ file PDF Ontap_CSDL.</div>
+                            <div class="exam-meta">⏱️ Tùy chỉnh | 📝 63 câu</div>
+                        </div>
+                        <button onclick="openConfigModal('ontapmau')" class="start-btn" style="background-color: #27ae60; border: none; cursor: pointer; color: white; padding: 10px 15px; border-radius: 5px; font-weight:bold; margin-top:10px;">Vào Thi Ngay ➔</button>
                     </div>
                 </div>
             </div>
@@ -161,6 +180,6 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="js/particles-config.js?v=1779288888"></script>
+    <script src="js/particles-config.js?v=1779845647"></script>
 </body>
 </html>

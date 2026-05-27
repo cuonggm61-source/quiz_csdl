@@ -18,10 +18,16 @@ function startQuiz(){
   let numQ = parseInt(params.get('num')) || 30;
   let startFrom = parseInt(params.get('start')) || 1;
   
+  const subject = params.get('subject') || 'csdl';
+  let rawData = RAW_QUESTIONS;
+  if(typeof ONTAPMAU_QUESTIONS !== 'undefined' && subject === 'ontapmau') {
+    rawData = ONTAPMAU_QUESTIONS;
+  }
+  
   if(mode==='review'){
-    questions = RAW_QUESTIONS.map((q,i)=>({...q,origIdx:i}));
+    questions = rawData.map((q,i)=>({...q,origIdx:i}));
   } else {
-    let pool = RAW_QUESTIONS.slice(startFrom-1);
+    let pool = rawData.slice(startFrom-1);
     // shuffle
     pool = pool.map((q,i)=>({...q,origIdx:startFrom-1+i})).sort(()=>Math.random()-0.5);
     questions = pool.slice(0, Math.min(numQ, pool.length));
