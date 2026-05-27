@@ -24,6 +24,8 @@ function startQuiz(){
     rawData = ONTAPMAU_QUESTIONS;
   } else if(typeof BAITAPPHUTOITHIEU_QUESTIONS !== 'undefined' && subject === 'baitapphutoithieu') {
     rawData = BAITAPPHUTOITHIEU_QUESTIONS;
+  } else if(typeof GIUAKY_QUESTIONS !== 'undefined' && subject === 'giuaky') {
+    rawData = GIUAKY_QUESTIONS;
   }
   
   if(mode==='review'){
