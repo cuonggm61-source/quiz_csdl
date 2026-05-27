@@ -1,0 +1,41 @@
+BÀI T ẬP PH Ụ THU ỘC HÀM & PHÂN RÃ LƯ ỢC ĐỒ 
+PHẦN 1. PH Ủ TỐI THI ỂU 
+Câu 1  
+Cho t ập phụ thuộc hàm:  
+F = { A → BC, B → C }  
+ 
+Phủ tối thiểu của F là t ập nào sau đây?  
+ 
+A. { A → BC, B → C }  
+B. { A → B, A → C, B → C }  
+C. { A → B, B → C }  
+D. { A → C, B → C }  
+ 
+Câu 2  
+Trong quá trình tìm ph ủ tối thiểu của một tập phụ thuộc hàm, bư ớc nào sau đây 
+không b ắt buộc? 
+ 
+A. Tách v ế phải sao cho m ỗi phụ thuộc hàm ch ỉ có m ột thuộc tính ở vế phải 
+B. Lo ại bỏ các thu ộc tính dư th ừa ở vế trái 
+C. Lo ại bỏ các ph ụ thuộc hàm dư th ừa 
+D. Thêm các ph ụ thuộc hàm m ới để bảo toàn thông tin  
+ 
+PHẦN 2. PHÂN RÃ LƯ ỢC ĐỒ 
+Câu 3  
+Cho lư ợc đồ R(A, B, C) v ới tập phụ thuộc hàm:  
+F = { A → B, B → C }  
+ 
+Phân rã R thành R₁(A, B) và R₂(B, C).  
+Phát bi ểu nào sau đây đúng?  
+ 
+A. Phân rã b ị mất mát thông tin  
+B. Phân rã không b ảo toàn ph ụ thuộc hàm  
+C. Phân rã không m ất mát thông tin và b ảo toàn ph ụ thuộc hàm  D. Phân rã ch ỉ bảo toàn ph ụ thuộc hàm (A → B)  
+Câu 4  
+Điều kiện cần và đ ủ để một phân rã R(XYZ) → R₁(XY), R₂(YZ) là không m ất mát 
+thông tin là:  
+A. X → Y  
+B. Y → Z  
+C. Y → X ho ặc Y → Z  
+D. XY → Z  
+ 
